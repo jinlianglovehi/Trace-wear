@@ -1,0 +1,6 @@
+<resources>
+
+        <!-- 经验区八宫格gridview_item_viewpager.xml中的数值 -->
+    <integer name="HomePageHeaderColumn">4</integer>
+
+</resources>

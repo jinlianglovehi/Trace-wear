@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- app背景色 -->
+    <color name="app_background_color">#FFF3F4F4</color>
+
+    <!-- 共用标题栏颜色,原颜色为#FF000000 -->
+    <color name="common_header_background_color">#FF45BCE3</color>
+
+    <!-- 其他共用颜色 -->
+    <color name="white_color">#FFFFFFFF</color><!-- 白色 -->
+    <color name="black_color">#FF000000</color><!-- 黑色 -->
+    <color name="gray_color">#FFA9A8A7</color><!-- 灰色 -->
+    <color name="common_footer_divider_color">#FFCBCBCB</color>
+    <color name="picmask_color">#66000000</color><!-- 遮罩色 -->
+    <color name="transparent_color">#00000000</color><!-- 透明色 -->
+    <color name="common_font_color">#FF474747</color><!-- 通用字体色 -->
+    <color name="common_image_tip_font_color">#FF686868</color><!-- 通用图片提示字体色 -->
+    <color name="common_border_color">#FFE1E1E1</color><!-- 通用边框色 -->
+    <color name="common_background_color">#FF4490c2</color><!-- 通用背景颜色 -->
+
+    <!-- mainactivity颜色 -->
+    <color name="blue_backgroud_color">#FF00b4f7</color>
+    <color name="map_type_title_text_color">#FF6d6d6d</color>
+    <color name="main_start_collect_btn_press_color">#FFfefe98</color>
+    <color name="main_dz_common_btn_color">#FF242424</color>
+    <color name="main_dz_common_btn_border_color">#FFbfbfbf</color><!-- 通用边框色 -->
+
+</resources>

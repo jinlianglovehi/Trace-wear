@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">地图测试</string>
+    <string name="app_agent_str">Talent/%1$s-%2$s (Android %3$s;%4$s;SerialId:%5$s)</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="send">Send</string>
+    <string name="stop">Stop</string>
+
+    <!-- Common Header相关 -->
+    <string name="common_header_btn_back_str">返回</string>
+    <string name="common_header_btn_ensure_str">确定</string>
+    <string name="common_header_network_remind_str">当前网络不可用，请检查你的网络设置。</string>
+
+    <!-- Common Footer相关 -->
+    <string name="common_footer_tv_homepage_str">首页</string>
+    <string name="common_footer_tv_news_str">资讯</string>
+    <string name="common_footer_tv_course_str">课程</string>
+    <string name="common_footer_tv_community_str">社区</string>
+    <string name="common_footer_tv_advanced_str">同学派</string>
+    <string name="common_footer_tv_user_str">我的</string>
+
+    <!-- waterfall 相关 -->
+    <string name="waterfall_header_hint_normal">下拉刷新</string>
+    <string name="waterfall_header_hint_ready">松开刷新数据</string>
+    <string name="waterfall_header_hint_loading">正在加载...</string>
+    <string name="waterfall_header_last_time">上次更新时间：</string>
+    <string name="waterfall_header_noupdated_str">暂未更新过</string>
+    <string name="waterfall_header_updated_str">上次更新于%1$s前</string>
+    <string name="waterfall_header_updated_justnow_str">刚刚更新</string>
+    <string name="waterfall_header_time_error_str">时间有问题</string>
+    <string name="waterfall_footer_hint_normal">查看更多</string>
+    <string name="waterfall_footer_hint_ready">松开载入更多</string>
+
+    <!-- MainActivity相关 -->
+    <string name="main_app_lancher_iv_no_more_msg_str">没有更多数据</string>
+    <string name="main_start_collect_data_btn_tip_str">欢迎使用Track 1.0.3\r\n您可以:</string>
+    <string name="main_start_collect_data_btn_str">开始采集</string>
+    <string name="main_stop_collect_data_btn_str">结束采集</string>
+    <string name="main_send_collect_data_btn_str">发送数据</string>
+
+    <string name="main_collect_finish_tip_str">轨迹采集已完成,请选择:</string>
+    <string name="main_upload_collect_data_tv_str">上传轨迹</string>
+    <string name="main_drop_collect_data_tv_str">放弃轨迹</string>
+    <string name="main_deleting_collect_data_tip_str">正在删除轨迹...</string>
+    <string name="main_uploading_collect_data_tip_str">正在上传轨迹...</string>
+    <string name="send_collect_uploading_data_tip_str">轨迹上传中...</string>
+    <string name="main_delete_collect_finish_tv_tip1_str">确认放弃当前轨迹吗?</string>
+    <string name="main_delete_collect_finish_tv_tip2_str">确认的话将删除当前轨迹</string>
+    <string name="main_sure_delete_collect_iv_tip_str">确认删除</string>
+    <string name="main_cancle_collect_iv_tip_str">取消</string>
+    <string name="main_start_gps_tip_str">请开启GPS</string>
+
+    <!-- EndCollectActivity相关 -->
+    <string name="end_collect_file_null_tip_str">当前文件夹路径获取失败!</string>
+
+
+    <!-- DelectColectActivity相关 -->
+    <string name="delect_succeed_delect_error_str">删除文件出错!</string>
+
+    <string name="delect_succeed_tv_tip_str">删除成功!</string>
+    <string name="send_succeed_tv_tip_str">上传成功!</string>
+
+    <string name="main_transfer_prepare_str">gps数据接收准备中</string>
+
+    <string name="main_type_tile_srr">地图模块%1$s:%2$s</string>
+    <string name="notice_content_transmited_tip">[已转发]</string>
+    <string name="notice_content_untransmit_tip">[未转发]</string>
+    <string name="app_version">2.2.0</string>
+</resources>

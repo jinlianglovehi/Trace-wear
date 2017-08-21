@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/image_cycle_view_rlyt_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background_color" >
+
+    <edu.hhstu.hhstutalent.view.CycleViewPager
+        android:id="@+id/image_cycle_view_pager_banner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </edu.hhstu.hhstutalent.view.CycleViewPager>
+
+    <LinearLayout
+        android:id="@+id/image_cycle_view_guide_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/image_cycle_view_guide_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/white_color"
+            android:textSize="14sp" 
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:id="@+id/image_cycle_view_guide_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

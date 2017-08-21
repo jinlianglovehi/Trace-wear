@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white_color">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:background="@color/common_background_color">
+
+        <TextView
+            android:id="@+id/gpscounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/common_background_color"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="50dp"
+            android:textSize="14sp"
+            android:textColor="@color/white_color"
+            android:layout_gravity="center_horizontal|bottom"/>
+
+        <FrameLayout
+            android:id="@+id/top_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/common_background_color"
+            android:layout_gravity="center">
+        </FrameLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/bottom_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="6dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="6dp"
+        android:layout_gravity="center"
+        android:background="@color/white_color">
+
+    </FrameLayout>
+
+</LinearLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+	android:oneshot="false">
+	<item android:drawable="@drawable/send_collect_uploading1" android:duration="400" />
+	<item android:drawable="@drawable/send_collect_uploading2" android:duration="400" />
+	<item android:drawable="@drawable/send_collect_uploading3" android:duration="400" />
+	<item android:drawable="@drawable/send_collect_uploading4" android:duration="400" />
+	<item android:drawable="@drawable/send_collect_uploading5" android:duration="400" />
+	<item android:drawable="@drawable/send_collect_uploading6" android:duration="400" />
+</animation-list>

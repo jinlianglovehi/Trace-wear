@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gps_data_transmission_rl"
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
+    android:layout_marginTop="10dp"
+    android:background="@color/white_color"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="1dp"
+    android:paddingTop="6dp" >
+
+    <LinearLayout
+        android:id="@+id/gps_data_transmission_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="6dp"
+        android:paddingTop="6dp" >
+
+        <TextView
+            android:id="@+id/gps_data_transmission_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/main_transfer_prepare_str"
+            android:textColor="@color/map_type_title_text_color"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</RelativeLayout>
