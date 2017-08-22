@@ -96,7 +96,7 @@ public class SensorService extends Service implements GPSController.GPSControlle
     private int _mode = FragmentMotionSelect.MOTION_AUTO;
 
 
-
+private volatile  int IMU_DATA_TEST_COUNT = 0 ;
     private OnEventListener _onEventLister;
     public interface OnEventListener{
         public void onEvent( long gpsCounter, long imuCounter, long elapse);
@@ -480,7 +480,7 @@ public class SensorService extends Service implements GPSController.GPSControlle
 
                 break;
             }
-            case Sensor.TYPE_GYROSCOPE: { //  //陀螺仪
+            case Sensor.TYPE_GYROSCOPE: { //  //陀螺仪  角速度
                 mGyroData = event.values.clone();
                 Log.e(TAG +" Gyro", mGyroData[0] + " " + mGyroData[1] + " " + mGyroData[2]);
                 break;
@@ -604,6 +604,12 @@ public class SensorService extends Service implements GPSController.GPSControlle
                     return;
 
                 try {
+                    IMU_DATA_TEST_COUNT++;
+                    Log.i(TAG," writeToFile:IMU_DATA_TEST COUNT:"+ IMU_DATA_TEST_COUNT);
+                     if(IMU_DATA_TEST_COUNT>=2){
+                         return ;
+                     }
+
                     Log.i(TAG, " writeToFile:IMU_DATA_TEST");
                     mOutStream.writeByte(type);
                     mOutStream.writeFloat(mAcceData[0]);
