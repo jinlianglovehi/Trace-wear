@@ -36,6 +36,12 @@
             android:name=".activity.MainActivityAnd"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.DeviceDefault.Light" >
+
+        </activity>
+
+        <!--test parse activoity-->
+
+        <activity android:name=".test.TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
