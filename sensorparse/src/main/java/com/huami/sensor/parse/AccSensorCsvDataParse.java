@@ -6,6 +6,8 @@ import android.util.Log;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,19 +40,29 @@ public class AccSensorCsvDataParse {
      * @param fileName
      * @return
      */
-    public List<String[]> getSensorDataFromFile(Context mContext,String fileName){
-        List<String[]> data = new ArrayList<String[]>();
+    public List<float[]> getSensorDataFromFile(Context mContext,String fileName){
+        List<float[]> data = new ArrayList<float[]>();
         try {
             Log.i(TAG, " getSensorDataFromFile: "+ fileName);
+
+            String path =mContext.getCacheDir().getPath() +"/"+fileName;
+            Log.i(TAG," path:"+ path);
+//            InputStream in = new FileInputStream(path);//读取文件的数据。
+//            InputStreamReader inputReader = new InputStreamReader(in);//读取
+
+
+//            InputStreamReader inputStreamReader = new InputStreamReader(new InputStream(mContext.getCacheDir()));
             InputStreamReader inputReader = new InputStreamReader(mContext.getResources().getAssets().open(fileName) );
             BufferedReader bufReader = new BufferedReader(inputReader);
             String line="";
             String[] itemData = null;
+            float[] itemFloatData =null;
             int count = 0;
             while((line = bufReader.readLine()) != null){
                 itemData = line.split(",");
+                itemFloatData =strToFloat(itemData);
                 count ++ ;
-                data.add(itemData);
+                data.add(itemFloatData);
                 Log.i(TAG, fileName+ " Line:"+ line.toString() + " ---"+printData(itemData) );
             }
             Log.i(TAG, fileName+" line Count Size:"+ count +",dataSize:"+ data.size());
@@ -61,6 +73,15 @@ public class AccSensorCsvDataParse {
         return data;
     }
 
+    public float[] strToFloat(String[] strs){
+        float[] results = new float[strs.length];
+        for (int i = 0; i <strs.length ; i++) {
+           results[i] = Float.valueOf(strs[i]);
+        }
+
+        return results;
+
+    }
 
     public  SensorMetaModel getModelFromFile(Context mContext ,String fileName){
         StringBuilder sb = new StringBuilder();

@@ -67,7 +67,7 @@ public class LocaltionDBManager {
         }
 
         String dbPath = "/data/data/" + packName
-                + "/databases/" + DB_NAME;
+                + "/cache/" + DB_NAME;
         Log.i(TAG, " dbPath:"+ dbPath);
         if (!new File(dbPath).exists()) {
             try {

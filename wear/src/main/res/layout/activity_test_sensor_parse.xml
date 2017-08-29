@@ -26,4 +26,12 @@
         android:text="Get_Localtion_data"
         />
 
+
+    <Button
+        android:id="@+id/btn_test_product_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get_Product_data"
+        />
+
 </LinearLayout>

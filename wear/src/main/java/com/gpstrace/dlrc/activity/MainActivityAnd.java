@@ -39,6 +39,7 @@ import com.gpstrace.dlrc.bluetooth.BluetoothChatService;
 import com.gpstrace.dlrc.bluetooth.BluetoothFileTransfer;
 import com.gpstrace.dlrc.bluetooth.ClsUtils;
 import com.gpstrace.dlrc.bluetooth.Constants;
+import com.gpstrace.dlrc.tools.ProductRouteFile;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -505,6 +506,25 @@ public class MainActivityAnd extends Activity implements
                 trans.replace(R.id.top_container, _fragmentWalking).commitAllowingStateLoss();
                 getFragmentManager().executePendingTransactions();
                 switchBottomFragment(_currentFragment,_fragmentStop);
+//                // TODO: 17-8-22 custom
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ProductRouteFile.getInstance().productFile(MainActivityAnd.this, new SensorService.OnEventListener() {
+                            @Override
+                            public void onEvent(long gpsCounter, long imuCounter, long elapse) {
+
+                            }
+                            @Override
+                            public void onDataReady(String path, String filename) {
+                                mAbsolutePath = path;
+                                mFileName =filename;
+                                mZipFilePath = getZipFilePath(mFileName);
+                                DZip.zipAsync(mAbsolutePath, mZipFilePath, MainActivityAnd.this);
+                            }
+                        });
+                    }
+                }).start();
             }
         } else {
             Toast.makeText(this,"请配对手机",Toast.LENGTH_SHORT).show();

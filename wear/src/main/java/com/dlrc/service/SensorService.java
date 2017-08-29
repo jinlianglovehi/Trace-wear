@@ -116,144 +116,154 @@ private volatile  int IMU_DATA_TEST_COUNT = 0 ;
         return _localBinder;
     }
 
+    private boolean openFun =false;
     public void startCollecttingData(int mode, OnEventListener evtListener){
-        Log.i(TAG, " writeToFile:StartCollecttingData");
-        _onEventLister = evtListener;
-        _mode = mode;
-        if (mbStart) {
-            return ;
-        }
 
-        PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        cpuWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "gps_service");
-        cpuWakeLock.acquire();
+        if(openFun){
 
-        mFileName = getNowDate();
-        mAbsolutePath = getOutputFilePath(mFileName);
-        try {
-            if (mAbsolutePath != null)
-                mOutStream = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(mAbsolutePath)));
-//            gpsFile = new BufferedWriter(new FileWriter(getOutputFilePath(getNowDate() + "_gps")));
-//            imuFile = new BufferedWriter(new FileWriter(getOutputFilePath(getNowDate() + "_imu")));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        writeData(TIME_AND_BATTERY);
-
-//        if (intent.getBooleanExtra("imuBoxChecked", false))
-        mSensorController.register();
-//        if (intent.getBooleanExtra("gpsBoxChecked", false))
-        mGPSController.start();
-
-
-        countGPS = 0;
-        countIMU = 0;
-        countSatellite = 0;
-        mTimer = new Timer();
-        mTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-              //  Intent intent = new Intent();
-              //  intent.setAction("com.dlrc.SensorService");
-             //   intent.putExtra("countGPS", countGPS);
-              //  intent.putExtra("countIMU", countIMU);
-              //  intent.putExtra("serviceSecond", serviceSecond);
-              //  sendBroadcast(intent);
-                if(_onEventLister != null)
-                    _onEventLister.onEvent(countGPS,countIMU, serviceSecond);
+            Log.i(TAG, " writeToFile:StartCollecttingData");
+            _onEventLister = evtListener;
+            _mode = mode;
+            if (mbStart) {
+                return ;
             }
-        }, 0, 1000);
 
-//        if (!intent.getBooleanExtra("imuBoxChecked", false) && !intent.getBooleanExtra("gpsBoxChecked", false)) {
-//            mTimer2.schedule(new TimerTask() {
-//                @Override
-//                public void run() {
-//                    serviceSecond++;
-//                    writeData(TIME_AND_BATTERY);
-//                }
-//            }, 0, 20);
-//        }
+            PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+            cpuWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "gps_service");
+            cpuWakeLock.acquire();
 
-        //writeData(MODE);
-        mbStart = true;
+            mFileName = getNowDate();
+            mAbsolutePath = getOutputFilePath(mFileName);
+            try {
+                if (mAbsolutePath != null)
+                    mOutStream = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(mAbsolutePath)));
+    //            gpsFile = new BufferedWriter(new FileWriter(getOutputFilePath(getNowDate() + "_gps")));
+    //            imuFile = new BufferedWriter(new FileWriter(getOutputFilePath(getNowDate() + "_imu")));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+    //        catch (IOException e) {
+    //            e.printStackTrace();
+    //        }
+    //        writeData(TIME_AND_BATTERY);
+
+    //        if (intent.getBooleanExtra("imuBoxChecked", false))
+            mSensorController.register();
+    //        if (intent.getBooleanExtra("gpsBoxChecked", false))
+            mGPSController.start();
+
+
+            countGPS = 0;
+            countIMU = 0;
+            countSatellite = 0;
+            mTimer = new Timer();
+            mTimer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                  //  Intent intent = new Intent();
+                  //  intent.setAction("com.dlrc.SensorService");
+                 //   intent.putExtra("countGPS", countGPS);
+                  //  intent.putExtra("countIMU", countIMU);
+                  //  intent.putExtra("serviceSecond", serviceSecond);
+                  //  sendBroadcast(intent);
+                    if(_onEventLister != null)
+                        _onEventLister.onEvent(countGPS,countIMU, serviceSecond);
+                }
+            }, 0, 1000);
+
+    //        if (!intent.getBooleanExtra("imuBoxChecked", false) && !intent.getBooleanExtra("gpsBoxChecked", false)) {
+    //            mTimer2.schedule(new TimerTask() {
+    //                @Override
+    //                public void run() {
+    //                    serviceSecond++;
+    //                    writeData(TIME_AND_BATTERY);
+    //                }
+    //            }, 0, 20);
+    //        }
+
+            //writeData(MODE);
+            mbStart = true;
+        }
     }
 
     public void stopCollecttingData(){
-        Log.i(TAG, " writeToFile:stopCollecttingData");
-        try {
-            if (mOutStream != null) {
-                mOutStream.close();
-                mOutStream = null;
-            }
-            /*
-            Intent intent = new Intent();
-            intent.setAction("com.dlrc.SensorService.FileName");
-            intent.putExtra("fileName", mFileName);
-            intent.putExtra("absolutePath", mAbsolutePath);
-            sendBroadcast(intent);
-*/
+
+        if(openFun){
+
+            Log.i(TAG, " writeToFile:stopCollecttingData");
             try {
-                RandomAccessFile raFile = new RandomAccessFile(mAbsolutePath,"rw");
-                raFile.writeByte(_mode);
-                raFile.writeByte(samplerate);
-                raFile.close();
-            }catch (NullPointerException e) {
+                if (mOutStream != null) {
+                    mOutStream.close();
+                    mOutStream = null;
+                }
+                /*
+                Intent intent = new Intent();
+                intent.setAction("com.dlrc.SensorService.FileName");
+                intent.putExtra("fileName", mFileName);
+                intent.putExtra("absolutePath", mAbsolutePath);
+                sendBroadcast(intent);
+    */
+                try {
+                    RandomAccessFile raFile = new RandomAccessFile(mAbsolutePath,"rw");
+                    raFile.writeByte(_mode);
+                    raFile.writeByte(samplerate);
+                    raFile.close();
+                }catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+
+
+                if(_onEventLister!=null)
+                    _onEventLister.onDataReady(mAbsolutePath, mFileName);
+
+                if (mSensorController != null)
+                    mSensorController.unregister();
+
+                if (mGPSController != null)
+                    mGPSController.stop();
+
+    //            if (gpsFile != null) {
+    //                gpsFile.close();
+    //                gpsFile = null;
+    //            }
+    //
+    //            if (imuFile != null) {
+    //                imuFile.close();
+    //                imuFile = null;
+    //            }
+
+                if (mTimer != null) {
+                    mTimer.cancel();
+                    mTimer = null;
+                }
+
+    //            if (mTimer2 != null) {
+    //                mTimer2.cancel();
+    //                mTimer2 = null;
+    //            }
+
+    //            DZip.zipAsync(mAbsolutePath, mZipFilePath, this);
+            } catch (IOException e) {
                 e.printStackTrace();
             }
 
 
-            if(_onEventLister!=null)
-                _onEventLister.onDataReady(mAbsolutePath, mFileName);
+            mbStart = false;
+          //  mGPSController = null;
+          //  mSensorController.setListener(null);
+          //  mSensorController = null;
+         //   unregisterReceiver(mBatteryReceiver);
 
-            if (mSensorController != null)
-                mSensorController.unregister();
+            //cpuWakeLock.release();
+            //cpuWakeLock = null;timestamp0 = 0
+            timestamp0 = 0;
+            imuCount = 0;
+            countGPS = 0;
+            isRecording = false;
+            isCountSample=false;
+            _onEventLister = null;
 
-            if (mGPSController != null)
-                mGPSController.stop();
-
-//            if (gpsFile != null) {
-//                gpsFile.close();
-//                gpsFile = null;
-//            }
-//
-//            if (imuFile != null) {
-//                imuFile.close();
-//                imuFile = null;
-//            }
-
-            if (mTimer != null) {
-                mTimer.cancel();
-                mTimer = null;
-            }
-
-//            if (mTimer2 != null) {
-//                mTimer2.cancel();
-//                mTimer2 = null;
-//            }
-
-//            DZip.zipAsync(mAbsolutePath, mZipFilePath, this);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-
-
-        mbStart = false;
-      //  mGPSController = null;
-      //  mSensorController.setListener(null);
-      //  mSensorController = null;
-     //   unregisterReceiver(mBatteryReceiver);
-
-        //cpuWakeLock.release();
-        //cpuWakeLock = null;timestamp0 = 0
-        timestamp0 = 0;
-        imuCount = 0;
-        countGPS = 0;
-        isRecording = false;
-        isCountSample=false;
-        _onEventLister = null;
     }
     @Override
     public void onCreate() {
@@ -472,6 +482,7 @@ private volatile  int IMU_DATA_TEST_COUNT = 0 ;
                 }
 
 
+                // TODO: 17-8-22  open
 
                 if (isTestMode)
                     writeData(IMU_DATA_TEST);
@@ -491,6 +502,7 @@ private volatile  int IMU_DATA_TEST_COUNT = 0 ;
 
 
     private void writeData(byte type) {
+
 
         Log.i(TAG, " writeData:"+ type);
         if (!isRecording)
@@ -600,8 +612,10 @@ private volatile  int IMU_DATA_TEST_COUNT = 0 ;
                 break;
             case IMU_DATA_TEST:
 
-                if (mAcceData == null || mMagnData == null || mGyroData == null)
+
+                if (mAcceData == null || mMagnData == null || mGyroData == null){
                     return;
+                }
 
                 try {
                     IMU_DATA_TEST_COUNT++;

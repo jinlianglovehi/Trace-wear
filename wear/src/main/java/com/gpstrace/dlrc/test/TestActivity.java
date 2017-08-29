@@ -15,6 +15,7 @@ import com.huami.sensor.parse.LocaltionDBManager;
 import com.huami.sensor.parse.SensorMetaModel;
 import com.huami.sensor.parse.SportLocationData;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -77,5 +78,20 @@ public class TestActivity extends Activity {
         });
 
 
+        findViewById(R.id.btn_test_product_data).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
+
+
+
+
+
     }
+
+
+
 }
