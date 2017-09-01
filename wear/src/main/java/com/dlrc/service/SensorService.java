@@ -116,7 +116,7 @@ private volatile  int IMU_DATA_TEST_COUNT = 0 ;
         return _localBinder;
     }
 
-    private boolean openFun =false;
+    private boolean openFun =true;
     public void startCollecttingData(int mode, OnEventListener evtListener){
 
         if(openFun){

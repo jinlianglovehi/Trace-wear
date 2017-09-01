@@ -10,6 +10,15 @@ import com.huami.sensor.parse.AccSensorCsvDataParse;
 import com.huami.sensor.parse.LocaltionDBManager;
 import com.huami.sensor.parse.SportLocationData;
 
+import org.apache.http.util.EncodingUtils;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
 /**
@@ -18,6 +27,7 @@ import java.util.List;
 
 public class ProductRouteFile {
 
+    private static final String TAG = ProductRouteFile.class.getSimpleName();
     private static ProductRouteFile instance ;
 
     private static String sportTrackId = "1503987805000" ;
@@ -53,7 +63,7 @@ public class ProductRouteFile {
         LocaltionDBManager localtionDBManager = new LocaltionDBManager(mContext);
         SQLiteDatabase db = localtionDBManager.initDBManager(mContext.getPackageName());
 
-        List<SportLocationData> listData = localtionDBManager.getSportLocationDatabyTrackId(db,sportTrackId);
+        List<SportLocationData> listData = localtionDBManager.getSportLocationDatabyTrackId(db,getSportTrackId(mContext));
 
         SportLocationData currentLocaltionData;
         for (int i = 0; i < listData.size(); i++) {
@@ -72,6 +82,32 @@ public class ProductRouteFile {
         }
 
         routeDataProduct.stopData();
+
+    }
+
+    public String getSportTrackId(Context mContext){
+            Log.i(TAG, " getSportTrackId: ");
+
+        try {
+            String path =mContext.getCacheDir().getPath() +"/sport_track_id.txt";
+            File file = new File(path);
+            FileInputStream fis = null;
+            fis = new FileInputStream(file);
+            int length = fis.available();
+            byte [] buffer = new byte[length];
+            fis.read(buffer);
+            String res = EncodingUtils.getString(buffer, "UTF-8");
+            fis.close();
+            Log.i(TAG,"getSportTrackId:"+ res);
+            return res;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+
 
     }
 }

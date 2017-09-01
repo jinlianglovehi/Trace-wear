@@ -1,6 +1,7 @@
 package com.gpstrace.dlrc.tools;
 
 import android.os.Environment;
+import android.util.Log;
 
 import com.dlrc.service.SensorService;
 
@@ -20,6 +21,8 @@ import java.util.Date;
 
 public class RouteDataProduct {
 
+    
+    private static final String TAG = RouteDataProduct.class.getSimpleName();
     private static RouteDataProduct instance ;
 
     private SensorService.OnEventListener _onEventLister;
@@ -38,7 +41,7 @@ public class RouteDataProduct {
     private String mAbsolutePath = null;
     private String mFileName = null;
     private int _mode =  0;
-    int samplerate  =50 ; // test
+    int samplerate  =25 ; // test
     public void startData(SensorService.OnEventListener evtListener){
         _onEventLister  =evtListener;
         mFileName = getNowDate();
@@ -90,11 +93,14 @@ public class RouteDataProduct {
     // acc
     public void writeIMUToFile(float[] mAcceData ,float[] mMagnData,float[] mGyroData){
          byte IMU_DATA_TEST = 10;
+
+         float rate = (float)10/4096;
         try {
+            Log.i(TAG,"  acc handle rate :"+ rate);
             mOutStream.writeByte(IMU_DATA_TEST);
-            mOutStream.writeFloat(mAcceData[0]);
-            mOutStream.writeFloat(mAcceData[1]);
-            mOutStream.writeFloat(mAcceData[2]);
+            mOutStream.writeFloat(mAcceData[0] * rate);
+            mOutStream.writeFloat(mAcceData[1] * rate);
+            mOutStream.writeFloat(mAcceData[2] * rate);
             mOutStream.writeFloat(mMagnData[0]);
             mOutStream.writeFloat(mMagnData[1]);
             mOutStream.writeFloat(mMagnData[2]);

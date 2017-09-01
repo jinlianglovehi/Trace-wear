@@ -18,8 +18,18 @@ sensor data
 > 陀螺仪的没有
 
 
-adb shell  getprop sport_geomagnetic;
+adb  shell  getprop sport_geomagnetic;
+adb  shell getprop sport_sensor_hub_data;
 
-adb shell getprop sport_sensor_hub_data;
+#### get data 
 adb  pull /data/data/com.huami.watch.newsport/databases
 adb  pull data/misc/sensor ;
+
+
+#### data daoru
+
+adb push sport_track_id.txt /data/data/com.gpstrace.dlrc/cache/;
+adb push sport_data.db /data/data/com.gpstrace.dlrc/cache/;
+adb push sensor_acc.csv /data/data/com.gpstrace.dlrc/cache/;
+adb push sensor_mag.csv /data/data/com.gpstrace.dlrc/cache/;
+adb push sensor_gyr.csv /data/data/com.gpstrace.dlrc/cache/;

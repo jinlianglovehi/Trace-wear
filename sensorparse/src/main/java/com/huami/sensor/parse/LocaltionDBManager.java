@@ -61,31 +61,22 @@ public class LocaltionDBManager {
 
         String fileDocPath = "/data/data/" + packName
                 + "/databases/";
-        File file =  new File(fileDocPath);
+
+        String catchPath = "/data/data/"+packName+"/cache/";
+        File file =  new File(catchPath);
         if(!file.isDirectory()){
             file.mkdirs();
         }
 
-        String dbPath = "/data/data/" + packName
-                + "/cache/" + DB_NAME;
-        Log.i(TAG, " dbPath:"+ dbPath);
-        if (!new File(dbPath).exists()) {
-            try {
-                FileOutputStream out = new FileOutputStream(dbPath);
-                InputStream in = mContext.getAssets().open("db/"+DB_NAME);
-                byte[] buffer = new byte[1024];
-                int readBytes = 0;
-                while ((readBytes = in.read(buffer)) != -1){
-                    Log.i(TAG," db  insert batch ");
-                    out.write(buffer, 0, readBytes);
-                }
+        String dbPath = catchPath + DB_NAME;
 
-                in.close();
-                out.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        File dbFile = new File(dbPath);
+        if(dbFile.exists()){
+            Log.i(TAG," dbFile exists ");
+        }else{
+            Log.i(TAG," dbFile not  exists ");
         }
+        Log.i(TAG, " dbPath:"+ dbPath);
         return SQLiteDatabase.openOrCreateDatabase(dbPath, null);
     }
 

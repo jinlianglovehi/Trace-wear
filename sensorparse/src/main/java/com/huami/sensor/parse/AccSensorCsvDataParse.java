@@ -47,12 +47,12 @@ public class AccSensorCsvDataParse {
 
             String path =mContext.getCacheDir().getPath() +"/"+fileName;
             Log.i(TAG," path:"+ path);
-//            InputStream in = new FileInputStream(path);//读取文件的数据。
-//            InputStreamReader inputReader = new InputStreamReader(in);//读取
+            InputStream in = new FileInputStream(path);//读取文件的数据。
+            InputStreamReader inputReader = new InputStreamReader(in);//读取
 
 
 //            InputStreamReader inputStreamReader = new InputStreamReader(new InputStream(mContext.getCacheDir()));
-            InputStreamReader inputReader = new InputStreamReader(mContext.getResources().getAssets().open(fileName) );
+//            InputStreamReader inputReader = new InputStreamReader(mContext.getResources().getAssets().open(fileName) );
             BufferedReader bufReader = new BufferedReader(inputReader);
             String line="";
             String[] itemData = null;
@@ -62,8 +62,14 @@ public class AccSensorCsvDataParse {
                 itemData = line.split(",");
                 itemFloatData =strToFloat(itemData);
                 count ++ ;
-                data.add(itemFloatData);
-                Log.i(TAG, fileName+ " Line:"+ line.toString() + " ---"+printData(itemData) );
+                if(itemFloatData[0]!=-1 && itemFloatData[1] !=-1){
+                    data.add(itemFloatData);
+                    Log.i(TAG, fileName+ " Line:"+ line.toString() + " ---"+printData(itemData) );
+                }else{
+                    Log.i(TAG," no need to add " + printData(itemData));
+                }
+
+
             }
             Log.i(TAG, fileName+" line Count Size:"+ count +",dataSize:"+ data.size());
         } catch (Exception e) {

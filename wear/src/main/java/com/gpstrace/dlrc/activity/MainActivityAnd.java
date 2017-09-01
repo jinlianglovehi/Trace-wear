@@ -507,24 +507,24 @@ public class MainActivityAnd extends Activity implements
                 getFragmentManager().executePendingTransactions();
                 switchBottomFragment(_currentFragment,_fragmentStop);
 //                // TODO: 17-8-22 custom
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ProductRouteFile.getInstance().productFile(MainActivityAnd.this, new SensorService.OnEventListener() {
-                            @Override
-                            public void onEvent(long gpsCounter, long imuCounter, long elapse) {
-
-                            }
-                            @Override
-                            public void onDataReady(String path, String filename) {
-                                mAbsolutePath = path;
-                                mFileName =filename;
-                                mZipFilePath = getZipFilePath(mFileName);
-                                DZip.zipAsync(mAbsolutePath, mZipFilePath, MainActivityAnd.this);
-                            }
-                        });
-                    }
-                }).start();
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        ProductRouteFile.getInstance().productFile(MainActivityAnd.this, new SensorService.OnEventListener() {
+//                            @Override
+//                            public void onEvent(long gpsCounter, long imuCounter, long elapse) {
+//
+//                            }
+//                            @Override
+//                            public void onDataReady(String path, String filename) {
+//                                mAbsolutePath = path;
+//                                mFileName =filename;
+//                                mZipFilePath = getZipFilePath(mFileName);
+//                                DZip.zipAsync(mAbsolutePath, mZipFilePath, MainActivityAnd.this);
+//                            }
+//                        });
+//                    }
+//                }).start();
             }
         } else {
             Toast.makeText(this,"请配对手机",Toast.LENGTH_SHORT).show();
