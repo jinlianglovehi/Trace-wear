@@ -95,15 +95,22 @@ public class RouteDataProduct {
          byte IMU_DATA_TEST = 10;
 
          float rate = (float)10/4096;
+         float magRate = 0.15f;
         try {
             Log.i(TAG,"  acc handle rate :"+ rate);
             mOutStream.writeByte(IMU_DATA_TEST);
             mOutStream.writeFloat(mAcceData[0] * rate);
             mOutStream.writeFloat(mAcceData[1] * rate);
             mOutStream.writeFloat(mAcceData[2] * rate);
+
+//            mOutStream.writeFloat(mMagnData[0] * magRate);
+//            mOutStream.writeFloat(mMagnData[1] * magRate);
+//            mOutStream.writeFloat(mMagnData[2] * magRate);
+
             mOutStream.writeFloat(mMagnData[0]);
             mOutStream.writeFloat(mMagnData[1]);
             mOutStream.writeFloat(mMagnData[2]);
+
             if(mGyroData!=null && mGyroData.length>0){
                 mOutStream.writeFloat(mGyroData[0]);
                 mOutStream.writeFloat(mGyroData[1]);

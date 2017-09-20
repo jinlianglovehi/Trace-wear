@@ -33,3 +33,8 @@ adb push sport_data.db /data/data/com.gpstrace.dlrc/cache/;
 adb push sensor_acc.csv /data/data/com.gpstrace.dlrc/cache/;
 adb push sensor_mag.csv /data/data/com.gpstrace.dlrc/cache/;
 adb push sensor_gyr.csv /data/data/com.gpstrace.dlrc/cache/;
+
+#### huanghe & zhufeng   1:8 ;
+
+
+> 
