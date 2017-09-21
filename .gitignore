@@ -7,3 +7,8 @@
 /build
 /captures
 .externalNativeBuild
+.idea/markdown-navigator.xml
+sensorparse
+/.gitignore
+.idea/misc.xml
+wear/.gitignore
