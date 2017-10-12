@@ -30,11 +30,19 @@ adb  pull data/misc/sensor ;
 
 adb push sport_track_id.txt /data/data/com.gpstrace.dlrc/cache/;
 adb push sport_data.db /data/data/com.gpstrace.dlrc/cache/;
+
 adb push sensor_acc.csv /data/data/com.gpstrace.dlrc/cache/;
 adb push sensor_mag.csv /data/data/com.gpstrace.dlrc/cache/;
 adb push sensor_gyr.csv /data/data/com.gpstrace.dlrc/cache/;
 
-#### huanghe & zhufeng   1:8 ;
 
+#### yijuhua 
+
+adb push sensor_acc.csv /data/data/com.gpstrace.dlrc/cache/;adb push sensor_mag.csv /data/data/com.gpstrace.dlrc/cache/;adb push sensor_gyr.csv /data/data/com.gpstrace.dlrc/cache/;
+
+
+
+
+#### huanghe & zhufeng   1:8 ;
 
 > 

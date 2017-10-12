@@ -66,6 +66,7 @@ public class AccSensorCsvDataParse {
                     data.add(itemFloatData);
                     Log.i(TAG, fileName+ " Line:"+ line.toString() + " ---"+printData(itemData) );
                 }else{
+                    data.add(itemFloatData);
                     Log.i(TAG," no need to add " + printData(itemData));
                 }
 

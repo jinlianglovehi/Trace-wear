@@ -94,27 +94,28 @@ public class RouteDataProduct {
     public void writeIMUToFile(float[] mAcceData ,float[] mMagnData,float[] mGyroData){
          byte IMU_DATA_TEST = 10;
 
-         float rate = (float)10/4096;
+         float accRate = (float)10/4096;
          float magRate = 0.15f;
+         float mGyroRate = (float) (3.1415926/180.0/16.4);
         try {
-            Log.i(TAG,"  acc handle rate :"+ rate);
+            Log.i(TAG,"  acc handle rate :"+ accRate);
             mOutStream.writeByte(IMU_DATA_TEST);
-            mOutStream.writeFloat(mAcceData[0] * rate);
-            mOutStream.writeFloat(mAcceData[1] * rate);
-            mOutStream.writeFloat(mAcceData[2] * rate);
+            mOutStream.writeFloat(mAcceData[0] * accRate);
+            mOutStream.writeFloat(mAcceData[1] * accRate);
+            mOutStream.writeFloat(mAcceData[2] * accRate);
 
-//            mOutStream.writeFloat(mMagnData[0] * magRate);
-//            mOutStream.writeFloat(mMagnData[1] * magRate);
-//            mOutStream.writeFloat(mMagnData[2] * magRate);
-
-            mOutStream.writeFloat(mMagnData[0]);
-            mOutStream.writeFloat(mMagnData[1]);
-            mOutStream.writeFloat(mMagnData[2]);
+            mOutStream.writeFloat(mMagnData[0] * magRate);
+            mOutStream.writeFloat(mMagnData[1] * magRate);
+            mOutStream.writeFloat(mMagnData[2] * magRate);
+//
+//            mOutStream.writeFloat(mMagnData[0]);
+//            mOutStream.writeFloat(mMagnData[1]);
+//            mOutStream.writeFloat(mMagnData[2]);
 
             if(mGyroData!=null && mGyroData.length>0){
-                mOutStream.writeFloat(mGyroData[0]);
-                mOutStream.writeFloat(mGyroData[1]);
-                mOutStream.writeFloat(mGyroData[2]);
+                mOutStream.writeFloat(mGyroData[0] * mGyroRate);
+                mOutStream.writeFloat(mGyroData[1]*mGyroRate);
+                mOutStream.writeFloat(mGyroData[2]* mGyroRate);
             }
 
         } catch (IOException e) {

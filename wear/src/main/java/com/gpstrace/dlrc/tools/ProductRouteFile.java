@@ -42,6 +42,7 @@ public class ProductRouteFile {
         return instance;
     }
 
+    private boolean isHadGpsData =false;
     public  void productFile(Context mContext,SensorService.OnEventListener onEventListener){
         RouteDataProduct routeDataProduct = RouteDataProduct.getInstance();
         routeDataProduct.startData(onEventListener);
@@ -63,12 +64,13 @@ public class ProductRouteFile {
         LocaltionDBManager localtionDBManager = new LocaltionDBManager(mContext);
         SQLiteDatabase db = localtionDBManager.initDBManager(mContext.getPackageName());
 
-        List<SportLocationData> listData = localtionDBManager.getSportLocationDatabyTrackId(db,getSportTrackId(mContext));
-
-        SportLocationData currentLocaltionData;
-        for (int i = 0; i < listData.size(); i++) {
-            currentLocaltionData = listData.get(i);
-            routeDataProduct.writeGPSDataToFile(currentLocaltionData.getmLatitude(),currentLocaltionData.getmLongitude());
+        if(isHadGpsData){
+            List<SportLocationData> listData = localtionDBManager.getSportLocationDatabyTrackId(db,getSportTrackId(mContext));
+            SportLocationData currentLocaltionData;
+            for (int i = 0; i < listData.size(); i++) {
+                currentLocaltionData = listData.get(i);
+                routeDataProduct.writeGPSDataToFile(currentLocaltionData.getmLatitude(),currentLocaltionData.getmLongitude());
+            }
         }
 
         List<float[]> mGyroList = AccSensorCsvDataParse.getInstance().
